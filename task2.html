@@ -1,0 +1,67 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="slyle2.css">
+
+<script type="text/javascript">
+function call(timesPerSec, callback) 				//функция, лимитирующая количество вызовов функции
+	{
+        var delayTime = 1000/timesPerSec;			//промежуток между вызовами функции
+        var lastCall = new Date().getTime();		//время последнего вызова
+        return function() 
+		{
+            var timeCall = new Date().getTime();	//время  вызова
+            if ((timeCall - lastCall) >= delayTime) //проверяем, можно ли вызвать функцию или "еще рано"
+			{
+                lastCall = timeCall;				
+                callback.apply(this);
+           }
+        };
+    };
+
+$(document).ready(function() {
+        
+        var flag = true;
+		var counter = 0;
+        window.setInterval(call(1, function() 
+		{
+            counter++; 								//просто счетчик количества вызовов
+			window.document.form1.form1txt.value = counter;
+        }), 100);
+        
+	    var flag2 = true;
+		var counter2 = 0;
+        window.setInterval(function() { 
+            counter2++;
+			window.document.form2.form2txt.value = counter2;
+        }, 100);
+        
+
+});
+
+
+</script>
+
+<title></title>
+</head>
+
+<body>
+<div id = "header">Использование паттерна Decorator</div>
+<div id = "content">
+	<h1 id="firstBlock">С ограничением.</h1>
+	<form name = "form1" id = "form1">
+	<textarea name = "form1txt" rows = "1" cols = "5"> </textarea>
+	</form>
+    <h1 id="secondBlock">Без ограничения.</h1>
+	<form name = "form2" id = "form2">
+	<textarea name = "form2txt" rows = "1" cols = "5"> </textarea>
+	</form>
+</div>
+
+
+
+
+</body>
+
+</html>
