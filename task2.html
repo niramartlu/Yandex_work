@@ -26,6 +26,7 @@ $(document).ready(function() {
 		{
 			var timespersec = prompt("Введите желаемое число вызовов функции в секунду.",1);
 			if(isNaN(timespersec)||Number(timespersec)<0) {alert("Вы ввели некорректные данные, повторите ввод")}
+			else if (timespersec==null) {alert("Вы не ввели данные, будет использовано значение по умолчанию - 1"); timespersec=1; check = true;}
 			else {check=true};
 		}
 		check = false;
@@ -33,20 +34,22 @@ $(document).ready(function() {
 		{
 			var interval = prompt("Введите интервал между вызовами функции, мс.",100);
 			if(isNaN(interval)||Number(interval)<0) {alert("Вы ввели некорректные данные, повторите ввод")}
+			else if (interval==null) {alert("Вы не ввели данные, будет использовано значение по умолчанию - 100"); interval=100; check = true;}
 			else {check=true};
 		}
+		
 		var flag = true;
 		var counter = 0;
 		var flag2 = true;
 		var counter2 = 0;        
-		
+
 		window.document.form1.form1txt.value = counter;
         window.setInterval(call(timespersec, function() 
 		{
             counter++; 								//просто счетчик количества вызовов
 			window.document.form1.form1txt.value = counter;
         }), interval);  
-	    
+
 		window.document.form2.form2txt.value = counter2;
         window.setInterval(function() { 
             counter2++;
