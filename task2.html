@@ -15,7 +15,7 @@ function call(timesPerSec, callback) 				//функция, лимитирующ�
             if ((timeCall - lastCall) >= delayTime) //проверяем, можно ли вызвать функцию или "еще рано"
 			{
                 lastCall = timeCall;				
-                callback.apply(this);
+                callback.apply(null, arguments);
            }
         };
     };
