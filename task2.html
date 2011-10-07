@@ -1,4 +1,4 @@
-﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js" type="text/javascript"></script>
@@ -21,23 +21,37 @@ function call(timesPerSec, callback) 				//функция, лимитирующ�
     };
 
 $(document).ready(function() {
-        
-        var flag = true;
+		var check = false;
+		while (check!=true)						//проверка на корректность ввода параметров
+		{
+			var timespersec = prompt("Введите желаемое число вызовов функции в секунду.",1);
+			if(isNaN(timespersec)||Number(timespersec)<0) {alert("Вы ввели некорректные данные, повторите ввод")}
+			else {check=true};
+		}
+		check = false;
+		while(check!=true)						//проверка на корректность ввода параметров
+		{
+			var interval = prompt("Введите интервал между вызовами функции, мс.",100);
+			if(isNaN(interval)||Number(interval)<0) {alert("Вы ввели некорректные данные, повторите ввод")}
+			else {check=true};
+		}
+		var flag = true;
 		var counter = 0;
+		var flag2 = true;
+		var counter2 = 0;        
+		
 		window.document.form1.form1txt.value = counter;
-        window.setInterval(call(1, function() 
+        window.setInterval(call(timespersec, function() 
 		{
             counter++; 								//просто счетчик количества вызовов
 			window.document.form1.form1txt.value = counter;
-        }), 100);
-        
-	    var flag2 = true;
-		var counter2 = 0;
+        }), interval);  
+	    
 		window.document.form2.form2txt.value = counter2;
         window.setInterval(function() { 
             counter2++;
 			window.document.form2.form2txt.value = counter2;
-        }, 100);
+        }, interval);
         
 
 });
@@ -59,6 +73,7 @@ $(document).ready(function() {
 	<form name = "form2" id = "form2">
 	<textarea name = "form2txt" rows = "1" cols = "5"> </textarea>
 	</form>
+
 </div>
 
 
