@@ -24,6 +24,7 @@ $(document).ready(function() {
         
         var flag = true;
 		var counter = 0;
+		window.document.form1.form1txt.value = counter;
         window.setInterval(call(1, function() 
 		{
             counter++; 								//просто счетчик количества вызовов
@@ -32,6 +33,7 @@ $(document).ready(function() {
         
 	    var flag2 = true;
 		var counter2 = 0;
+		window.document.form2.form2txt.value = counter2;
         window.setInterval(function() { 
             counter2++;
 			window.document.form2.form2txt.value = counter2;
